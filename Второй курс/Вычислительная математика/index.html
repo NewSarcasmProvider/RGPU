@@ -4,62 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
     <title>Document</title>
 </head>
 <body>
     <div class="app">
+        <ul>
 
-        <select id="first"></select>
-        <select id="second"></select>
+            <li><p id="info">Выберите метод решения</p></li>
 
-        <p id="p">Индекс выбранного элемента: 0</p>
+            <li><select id="first" style="width:300px;"><option>Не выбрано</option></select></li>
+            <li><select id="second" style="width:300px;"><option>Не выбрано</option></select></li>
+            
+            <li><button onclick="prog()" >Выполнить решение</button></li>
+
+            <li><p id="result">...</p></li>
+
+        </ul>
 
         <script>
-            function gid(i) {return document.getElementById(i);}
-            
-            function init() {
-                let list = {
-                    first: ['Не выбрано', 'Последовательный шаг', 'Периодический шаг'],
-
-                    second: {
-                        1: ['Не выбрано', 'Метод левых прямоугольников', 'Метод правых прямоугольников', 'Метод трапеций', 'Метод парабол'],
-                        2: ['Не выбрано', 'Метод 1', 'Метод 2']
-                    }
-                }
-            
-                let sid = 'first', first = gid(sid), cnt = list[sid].length, i=0;
-                first.options.length = 0;
-                for (i=0; i<cnt; i++) {first.options[i] = new Option(list[sid][i], i);}
-            
-                first.onchange = function() {
-                    sid = 'second';
-                    let second = gid(sid), cnt = list[sid][this.value].length;
-                    second.options.length = 0;
-
-                    for (i=0; i<cnt; i++) {
-                        second.options[i] = new Option(list[sid][this.value][i], i);
-                    }
-
-                    second.style.display = 'inline-block';
-                    second.onchange();
-                }
-            }
-            
-            document.body.onload = init;
-
-            var selectElem = document.getElementById('second')
-            var pElem = document.getElementById('p')
-
-            selectElem.addEventListener('change', function() {
-                var index = selectElem.options[selectElem.selectedIndex].text;
-                pElem.innerHTML = 'selectedIndex: ' + index;
-            })
-
+            select()
         </script>
 
-        
-        
+
     </div>
 </body>
 </html>
